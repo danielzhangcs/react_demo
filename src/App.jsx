@@ -1,5 +1,7 @@
 import React from 'react';
 
+import TimeDisplay from './components/TimeDisplay';
+
 import { exampleStyle, logoStyle }  from './styles/commonStyles';
 import reactLogo from './images/logo.svg';
 
@@ -10,6 +12,7 @@ function App() {
     <div style={exampleStyle}>
       <img src={reactLogo} style={logoStyle} height="100" alt="logo" />
       {helloString}
+      <TimeDisplay />
     </div>
   );
 }
