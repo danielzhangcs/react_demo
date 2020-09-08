@@ -5,9 +5,26 @@ import { fetchTime }  from '../remoting/';
 class TimeDisplay extends React.Component {
   state = {
     currentTime: null,
+    updateCounter: 0,
   }
 
-  handleClick = async event => {
+  componentDidMount() {
+    const { updateTime } = this;
+
+    updateTime();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { currentTime, updateCounter } = this.state;
+
+    if (prevState.currentTime !== currentTime) {
+      this.setState({
+        updateCounter: updateCounter + 1,
+      });
+    }
+  }
+
+  updateTime = async () => {
     const currentTime = await fetchTime();
 
     this.setState({
@@ -16,9 +33,9 @@ class TimeDisplay extends React.Component {
   }
 
   render() {
-    const { handleClick } = this;
+    const { updateTime } = this;
     const { buttonText } = this.props;
-    const { currentTime } = this.state;
+    const { currentTime, updateCounter } = this.state;
 
 
     return (
@@ -30,9 +47,12 @@ class TimeDisplay extends React.Component {
           {currentTime ? currentTime : '???'}
         </div>
         <div>
+          The time has been updated {updateCounter} times
+        </div>
+        <div>
           <button
             type={'button'}
-            onClick={handleClick}
+            onClick={updateTime}
           >
             {buttonText}
           </button>
