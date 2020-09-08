@@ -1,12 +1,18 @@
 import React from 'react';
 
+import { fetchTime }  from '../remoting/';
+
 class TimeDisplay extends React.Component {
   state = {
     currentTime: null,
   }
 
-  handleClick = event => {
+  handleClick = async event => {
+    const currentTime = await fetchTime();
 
+    this.setState({
+      currentTime,
+    });
   }
 
   render() {
