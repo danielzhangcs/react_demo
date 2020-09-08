@@ -12,7 +12,7 @@ function App() {
     <div style={exampleStyle}>
       <img src={reactLogo} style={logoStyle} height="100" alt="logo" />
       {helloString}
-      <TimeDisplay />
+      <TimeDisplay buttonText={'Check Time'} />
     </div>
   );
 }

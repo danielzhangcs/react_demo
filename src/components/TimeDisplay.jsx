@@ -5,8 +5,34 @@ class TimeDisplay extends React.Component {
     currentTime: null,
   }
 
+  handleClick = event => {
+
+  }
+
   render() {
-    return '';
+    const { handleClick } = this;
+    const { buttonText } = this.props;
+    const { currentTime } = this.state;
+
+
+    return (
+      <>
+        <div>
+          The current Time is:
+        </div>
+        <div>
+          {currentTime ? currentTime : '???'}
+        </div>
+        <div>
+          <button
+            type={'button'}
+            onClick={handleClick}
+          >
+            {buttonText}
+          </button>
+        </div>
+      </>
+    );
   }
 }
 
